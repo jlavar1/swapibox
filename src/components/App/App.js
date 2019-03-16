@@ -95,16 +95,17 @@ class App extends Component {
   }
 
   streamlinedPlanets = planets => {
-    const streamlinedPlanets = planets.map(planet => {
+    const streamlinedPlanets = planets.map( async (planet) => {
+      const residents = await this.fetchResidents(planet.residents)
       return {
         name: planet.name,
         terrain: planet.terrain,
         population: planet.population,
         climate: planet.climate,
-        residents: this.fetchResidents(planet.residents)
+        residents: residents
       }
     })
-    return streamlinedPlanets
+    return Promise.all(streamlinedPlanets)
   }
 
   fetchResidents = (residents) => {
