@@ -16,7 +16,8 @@ class App extends Component {
       },
       error: '',
       vehicles: [],
-      planets: []
+      planets: [],
+      people: []
     }
   }
 
@@ -30,7 +31,7 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    this.fetchPlanets()
+    this.fetchPeople()
   }
 
   randomizeFilm = () => {
@@ -59,7 +60,38 @@ class App extends Component {
   }
 
   fetchPeople = async () => {
+    const url = 'https://swapi.co/api/people/';
+    const people = await this.fetchHelper(url)
+    const mappedPeople = await this.streamlinePeople(people.results)
+    this.setState({
+      people: mappedPeople
+    })
+  }
 
+  streamlinePeople = (people) => {
+    const streamlinedPeople = people.map(async (person) => {
+      const fetchedHomeworld = await this.fetchHomeworld(person.homeworld)
+      const fetchedSpecies = await this.fetchSpecies(person.species)
+      return {
+        name: person.name,
+        homeworld: fetchedHomeworld.name,
+        species: fetchedSpecies.classification,
+        homeworld_population: fetchedHomeworld.population
+      }
+    })
+    return Promise.all(streamlinedPeople)
+  }
+
+  fetchHomeworld = async (homeworlds) => {
+    const fetchedHomeworld = await this.fetchHelper(homeworlds)
+    const planet = await fetchedHomeworld
+    return planet
+  }
+
+  fetchSpecies = async (species) => {
+    const fetchedSpecies = await this.fetchHelper(species)
+    const speciesData = await fetchedSpecies
+    return speciesData
   }
 
   fetchVehicles = async () => {
