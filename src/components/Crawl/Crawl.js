@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Crawl = (props) => {
   const {title, crawl, release_date } = props.movieCrawl

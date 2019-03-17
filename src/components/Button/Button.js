@@ -8,10 +8,10 @@ class Button extends Component {
 
   render() {
     return (
-      <div>
-        <button>People</button>
-        <button>Planets</button>
-        <button>Vehicles</button>
+      <div className='button-container'>
+        <button className='category-button'>People</button>
+        <button className='category-button'>Planets</button>
+        <button className='category-button'>Vehicles</button>
       </div>
     )
   }
