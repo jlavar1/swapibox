@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
 import CardContainer from '../CardContainer/CardContainer';
-// import fetchHelper from '../../helper/fetchHelper';
+import fetchHelper from '../../helper/fetchHelper';
 
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movieCrawl: {
-        title: '',
-        crawl: '',
-        release_date: ''
-      },
+      movieCrawl: {},
       error: '',
       vehicles: [],
       planets: [],
@@ -21,35 +17,17 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  // const url = `https://swapi.co/api/films/${this.randomizeFilm()}/`
-  // fetch(url)
-  //   .then(response => response.json())
-  //   .then(data => data.opening_crawl)
-  //   .then(openCrawl => this.setState({openCrawl}))
-  //   .catch(error => this.setState({error: error.message}))
-  // }
-
   componentDidMount() {
-    this.fetchPeople()
+    this.fetchCrawl()
   }
 
   randomizeFilm = () => {
     return Math.floor(Math.random() * 8);
   }
   
-  fetchHelper = async (url) => {
-    const response = await fetch(url);
-    if (response.ok) {
-      return response.json()
-    } else {
-      throw Error('Failed to retrieve data, please try again')
-    }
-  }
-
   fetchCrawl = async () => {
     const url = `https://swapi.co/api/films/${this.randomizeFilm()}/`
-    const data = await this.fetchHelper(url)
+    const data = await fetchHelper(url)
     this.setState({
       movieCrawl: {
         title: data.title,
@@ -61,7 +39,7 @@ class App extends Component {
 
   fetchPeople = async () => {
     const url = 'https://swapi.co/api/people/';
-    const people = await this.fetchHelper(url)
+    const people = await fetchHelper(url)
     const mappedPeople = await this.streamlinePeople(people.results)
     this.setState({
       people: mappedPeople
@@ -83,20 +61,20 @@ class App extends Component {
   }
 
   fetchHomeworld = async (homeworlds) => {
-    const fetchedHomeworld = await this.fetchHelper(homeworlds)
+    const fetchedHomeworld = await fetchHelper(homeworlds)
     const planet = await fetchedHomeworld
     return planet
   }
 
   fetchSpecies = async (species) => {
-    const fetchedSpecies = await this.fetchHelper(species)
+    const fetchedSpecies = await fetchHelper(species)
     const speciesData = await fetchedSpecies
     return speciesData
   }
 
   fetchVehicles = async () => {
     const url = 'https://swapi.co/api/vehicles/'
-    const vehicles = await this.fetchHelper(url)
+    const vehicles = await fetchHelper(url)
     const mapVehicles = await this.streamlineVehicles(vehicles.results);
     this.setState({
       vehicles: mapVehicles
@@ -118,7 +96,7 @@ class App extends Component {
 
   fetchPlanets = async () => {
     const url = 'https://swapi.co/api/planets/';
-    const planetsPromised = await this.fetchHelper(url)
+    const planetsPromised = await fetchHelper(url)
     const planets = await planetsPromised.results
     const mappedPlanets = await this.streamlinedPlanets(planets)
     this.setState({
@@ -142,7 +120,7 @@ class App extends Component {
 
   fetchResidents = (residents) => {
     let unresolvedResidents = residents.map(async (resident) => {
-      const fetchedResident = await this.fetchHelper(resident)
+      const fetchedResident = await fetchHelper(resident)
       return fetchedResident.name
     })
     return Promise.all(unresolvedResidents)
