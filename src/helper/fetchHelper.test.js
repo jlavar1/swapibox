@@ -19,7 +19,7 @@ describe('fetchHelper', () => {
     }));
   });
 
-  it('should fetch the expected URL', () => {
+  it('should fetch the expected parameter (URL)', () => {
     const url = 'https://swapi.co/'
 
     fetchHelper(url)
