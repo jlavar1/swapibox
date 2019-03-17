@@ -4,11 +4,12 @@ import { shallow } from 'enzyme';
 
 describe('App', () => {
   let wrapper;
-  
+
   beforeEach(() => {
     wrapper = shallow(
       <App />
     );
+
   });
   
   it('should match the snapshot', () => {
@@ -24,4 +25,13 @@ describe('App', () => {
       people: []
     });
   });
+
+  it('should call fetchCrawl() when App mounts', () => { 
+    wrapper.instance().fetchCrawl = jest.fn();
+
+    wrapper.instance().componentDidMount();
+
+    expect(wrapper.instance().fetchCrawl).toBeCalled();
+  });
+
 })

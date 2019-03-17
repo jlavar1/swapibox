@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
 import CardContainer from '../CardContainer/CardContainer';
+import Crawl from '../Crawl/Crawl';
 import fetchHelper from '../../helper/fetchHelper';
 
 
@@ -128,17 +129,23 @@ class App extends Component {
 
   render() {
     const { movieCrawl, error } = this.state
-    return (
-      <div className="App">
-      {movieCrawl.title}
-      {movieCrawl.release_date}
-      {movieCrawl.crawl}
-      <Header/>
-      <Button />
-      <CardContainer />
-      {error && error}
-      </div>
-    )
+      return (
+        <div class="grid-container">
+          <div class="movieCrawl">
+            <Crawl movieCrawl={movieCrawl}/>
+          </div>
+          <div class="Header">
+            <Header/>
+          </div>
+          <div class="Buttons">
+            <Button />
+          </div>
+          <div class="Card-Container">
+            <CardContainer />
+          </div>
+          { error && error }
+        </div>
+      )
   }
 }
 
