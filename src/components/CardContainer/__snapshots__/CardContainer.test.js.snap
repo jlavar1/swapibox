@@ -1,8 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardContainer should match the snapshot 1`] = `
-<div>
-  This is the card CardContainer
-  <Card />
-</div>
-`;
+exports[`CardContainer should match the snapshot 1`] = `undefined`;

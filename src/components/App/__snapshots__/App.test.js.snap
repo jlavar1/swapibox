@@ -1,3 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should match the snapshot 1`] = `undefined`;
+exports[`App should match the snapshot 1`] = `
+<div
+  className="grid-container"
+>
+  <div
+    className="movieCrawl"
+  >
+    <Crawl
+      movieCrawl={Object {}}
+    />
+  </div>
+  <div
+    className="Header"
+  >
+    <Header />
+  </div>
+  <div
+    className="Buttons"
+  >
+    <Button
+      enableCategory={[Function]}
+      fetchCategory={[Function]}
+      people={Array []}
+      planets={Array []}
+      vehicles={Array []}
+    />
+  </div>
+  <div
+    className="Card-Area"
+  >
+    <CardContainer
+      category={
+        Object {
+          "enabled": "",
+          "error": "",
+          "movieCrawl": Object {},
+          "people": Array [],
+          "planets": Array [],
+          "vehicles": Array [],
+        }
+      }
+      enabled=""
+      people={Array []}
+      planets={Array []}
+      vehicles={Array []}
+    />
+  </div>
+</div>
+`;

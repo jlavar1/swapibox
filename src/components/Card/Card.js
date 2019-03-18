@@ -25,8 +25,11 @@ const Card = (props) => {
             <p>Climate: {planet.climate}</p>
             <p>Terrain: {planet.terrain}</p>
             <ul>      
-              Residents: {
-                planet.residents.map((resident) => {
+              Residents: 
+                {!planet.residents.length && 
+                    <li>None</li>
+                }
+                {planet.residents.map((resident) => {
                   return (
                     <li>{resident}</li>
                   )

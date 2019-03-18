@@ -1,9 +1,11 @@
 import React from 'react';
 import App from './App';
 import { shallow } from 'enzyme';
+import * as api from '../../helper/fetchHelper';
 
 describe('App', () => {
   let wrapper;
+  let mockData;
 
   beforeEach(() => {
     wrapper = shallow(
@@ -34,4 +36,20 @@ describe('App', () => {
     expect(wrapper.instance().fetchCrawl).toBeCalled();
   });
 
+  it('should call fetchHelper in fetchCrawl', async () => {
+    const url = 'https://swapi.co/';
+    mockData = {
+      title: 'The Force',
+      opening_crawl: 'A long time ago...',
+      release_date: 'March 29, 1991'
+    }
+
+
+    
+    api.fetchHelper = jest.fn(() => Promise.resolve(mockData))
+
+    await wrapper.instance().fetchCrawl()
+
+    expect(api.fetchHelper).toBeCalled()
+  });
 })

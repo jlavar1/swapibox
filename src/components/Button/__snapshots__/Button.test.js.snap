@@ -1,14 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should match the snapshot 1`] = `
-<div>
-  <button>
+<div
+  className="button-container"
+>
+  <button
+    className="category-button"
+    name="people"
+    onClick={[Function]}
+  >
     People
   </button>
-  <button>
+  <button
+    className="category-button"
+    name="planets"
+    onClick={[Function]}
+  >
     Planets
   </button>
-  <button>
+  <button
+    className="category-button"
+    name="vehicles"
+    onClick={[Function]}
+  >
     Vehicles
   </button>
 </div>
