@@ -14,7 +14,8 @@ class App extends Component {
       error: '',
       vehicles: [],
       planets: [],
-      people: []
+      people: [],
+      enabled: ''
     }
   }
 
@@ -53,6 +54,13 @@ class App extends Component {
         // do nothing
     }
   }
+
+  enableCategory = (category) => {
+    this.setState({
+      enabled: category
+    })
+  }
+
   fetchPeople = async () => {
     const url = 'https://swapi.co/api/people/';
     const people = await fetchHelper(url)
@@ -143,7 +151,7 @@ class App extends Component {
   }
 
   render() {
-    const { movieCrawl, error, vehicles, people, planets } = this.state
+    const { enabled, movieCrawl, error, vehicles, people, planets } = this.state
       return (
         <div className="grid-container">
           <div className="movieCrawl">
@@ -154,16 +162,19 @@ class App extends Component {
           </div>
           <div className="Buttons">
             <Button 
-            fetchCategory={this.fetchCategory}
-            vehicles={vehicles}
-            people={people}
-            planets={planets}/>
+              fetchCategory={this.fetchCategory}
+              enableCategory={this.enableCategory}
+              vehicles={vehicles}
+              people={people}
+              planets={planets}/>
           </div>
           <div className="Card-Area">
             <CardContainer 
-            vehicles={vehicles}
-            people={people}
-            planets={planets}/>
+              vehicles={vehicles}
+              people={people}
+              planets={planets}
+              enabled={enabled}
+              category={this.state}/>
           </div>
           { error && error }
         </div>

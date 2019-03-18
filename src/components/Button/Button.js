@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Button extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class Button extends Component {
   displayCorrectCategory = (e) => {
     e.preventDefault();
     this.props.fetchCategory(e.target.name)
+    this.props.enableCategory(e.target.name)
   }
   
   render() {
@@ -20,6 +22,14 @@ class Button extends Component {
       </div>
     )
   }
+}
+
+Button.propTypes = {
+  fetchCategory: PropTypes.func,
+  enableCategory: PropTypes.func,
+  vehicles: PropTypes.array,
+  people: PropTypes.array,
+  planets: PropTypes.array
 }
 
 export default Button

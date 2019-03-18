@@ -1,10 +1,11 @@
 * {
   outline: none;
+  box-sizing: border-box;
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 0.4fr 1.6fr;
+  grid-template-columns: 404px 1fr 1fr 1fr;
+  grid-template-rows: 14rem 10rem 20rem;
   grid-template-areas: 
     "movieCrawl Header    Header    Header" 
     "movieCrawl Buttons   Buttons   Buttons" 

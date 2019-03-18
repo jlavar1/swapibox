@@ -1,3 +1,21 @@
 .Card-Area {
   background-color: black;
 }
+
+.empty-cards {
+  background-color: black;
+  height: 100%;
+  font-family: 'Poller One', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  flex-wrap: wrap;
+  color: #feda4a;
+  margin: 0;
+}
+
+.card-wrap {
+  display: flex;
+  flex-wrap: wrap
+}
