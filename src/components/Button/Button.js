@@ -6,12 +6,17 @@ class Button extends Component {
     this.state = {}
   }
 
+  displayCorrectCategory = (e) => {
+    e.preventDefault();
+    this.props.fetchCategory(e.target.name)
+  }
+  
   render() {
     return (
       <div className='button-container'>
-        <button className='category-button'>People</button>
-        <button className='category-button'>Planets</button>
-        <button className='category-button'>Vehicles</button>
+        <button onClick={this.displayCorrectCategory} className='category-button' name='people'>People</button>
+        <button onClick={this.displayCorrectCategory} className='category-button' name='planets'>Planets</button>
+        <button onClick={this.displayCorrectCategory} className='category-button' name='vehicles'>Vehicles</button>
       </div>
     )
   }

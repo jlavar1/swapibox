@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Card extends Component {
-  constructor() {
-    super(); 
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <div>
-        This is a card living in the CC
-      </div>
-    )
-  }
+const Card = (props) => {
+  return (
+    <section className='card'>
+      This is a card living in the CC
+    </section>
+  )
 }
 
 export default Card;

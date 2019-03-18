@@ -38,6 +38,21 @@ class App extends Component {
     })
   }
 
+  fetchCategory = (category) => {
+    switch(category) {
+      case 'people':
+        this.fetchPeople()
+        break;
+      case 'planets':
+        this.fetchPlanets();
+        break;
+      case 'vehicles':
+        this.fetchVehicles();
+        break;
+      default:
+        // do nothing
+    }
+  }
   fetchPeople = async () => {
     const url = 'https://swapi.co/api/people/';
     const people = await fetchHelper(url)
@@ -128,20 +143,27 @@ class App extends Component {
   }
 
   render() {
-    const { movieCrawl, error } = this.state
+    const { movieCrawl, error, vehicles, people, planets } = this.state
       return (
-        <div class="grid-container">
-          <div class="movieCrawl">
+        <div className="grid-container">
+          <div className="movieCrawl">
             <Crawl movieCrawl={movieCrawl}/>
           </div>
-          <div class="Header">
+          <div className="Header">
             <Header/>
           </div>
-          <div class="Buttons">
-            <Button />
+          <div className="Buttons">
+            <Button 
+            fetchCategory={this.fetchCategory}
+            vehicles={vehicles}
+            people={people}
+            planets={planets}/>
           </div>
-          <div class="Card-Container">
-            <CardContainer />
+          <div className="Card-Area">
+            <CardContainer 
+            vehicles={vehicles}
+            people={people}
+            planets={planets}/>
           </div>
           { error && error }
         </div>
